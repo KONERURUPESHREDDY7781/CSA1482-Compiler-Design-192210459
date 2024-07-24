@@ -1,0 +1,45 @@
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+
+%option noyywrap
+
+DIGIT [0-9]
+ALPHA [a-zA-Z]
+
+%%
+{DIGIT}+ {
+    printf("Number: %s\n", yytext);
+}
+
+{ALPHA}+ {
+    printf("Word: %s\n", yytext);
+}
+
+[\t\n] ;
+
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
+
+output::
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files (x86)\GnuWin32\bin>flex flash.l
+
+C:\Program Files (x86)\GnuWin32\bin>lex gcc.yy.c
+'lex' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Program Files (x86)\GnuWin32\bin>gcc lex.yy.c
+
+C:\Program Files (x86)\GnuWin32\bin>a.exe
+mahi7781
+Word: mahi
+Number: 7781
+
