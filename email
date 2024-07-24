@@ -1,0 +1,49 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+
+void validate_email(const char* email) {
+    printf("Valid email address: %s\n", email);
+}
+
+void invalid_email(const char* email) {
+    printf("Invalid email address: %s\n", email);
+}
+%}
+
+%%
+
+[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,} {
+    validate_email(yytext);
+}
+
+.|\n {
+    invalid_email(yytext);
+}
+
+%%
+
+int main() {
+    printf("Enter an email address to check its validity:\n");
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+
+output:
+
+Microsoft Windows [Version 10.0.22631.3880]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files (x86)\GnuWin32\bin>flex email.l
+
+C:\Program Files (x86)\GnuWin32\bin>gcc lex.yy.c
+
+C:\Program Files (x86)\GnuWin32\bin>a.exe
+Enter an email address to check its validity:
+konerurupeshreddy@gmail.com
+Valid email address: konerurupeshreddy@gmail.com
+Invalid email address:
