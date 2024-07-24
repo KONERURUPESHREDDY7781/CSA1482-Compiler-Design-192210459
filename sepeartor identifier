@@ -1,0 +1,28 @@
+%{
+#include<stdio.h>
+%}
+%%
+if|else|while|int|switch|for|char { printf("\n%s is a KEYWORD", yytext);}
+[a-zA-Z0-9]+ { printf("\n%s is IDENTIFIER", yytext);}
+%%
+int yywrap( ){}
+int main()
+{
+	yylex();
+}
+
+output:
+Microsoft Windows [Version 10.0.22631.3880]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files (x86)\GnuWin32\bin>flex seperators.l
+
+C:\Program Files (x86)\GnuWin32\bin>gcc lex.yy.c
+
+C:\Program Files (x86)\GnuWin32\bin>a.exe
+23
+
+23 is IDENTIFIER
+36
+
+36 is IDENTIFIER
