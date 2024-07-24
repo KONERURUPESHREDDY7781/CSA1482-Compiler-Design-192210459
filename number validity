@@ -1,0 +1,37 @@
+%{
+#include <stdio.h>
+%}
+
+digit   [0-9]
+mobnum  ^{digit}{10}$
+
+%%
+
+{mobnum}        { printf("Valid mobile number: %s\n", yytext); }
+{digit}+        { printf("Invalid mobile number: %s\n", yytext); }
+.|\n            { /* ignore other characters */ }
+
+%%
+
+int main(int argc, char **argv)
+{
+    yylex();
+    return 0;
+}
+
+int yywrap()
+{
+    return 1;
+}
+
+output:
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files (x86)\GnuWin32\bin>flex numbervalid.l
+
+C:\Program Files (x86)\GnuWin32\bin>gcc lex.yy.c
+
+C:\Program Files (x86)\GnuWin32\bin>a.exe
+6309399009
+Valid mobile number: 6309399009
+
