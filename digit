@@ -1,0 +1,32 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+[0-9]    { printf("The input is a digit: %s\n", yytext); }
+.        { printf("The input is not a digit: %s\n", yytext); }
+%%
+
+int main(int argc, char **argv) {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+
+output:
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files (x86)\GnuWin32\bin>flex digit.l
+
+C:\Program Files (x86)\GnuWin32\bin>gcc lex.yy.c
+
+C:\Program Files (x86)\GnuWin32\bin>a.exe
+23445
+The input is a digit: 2
+The input is a digit: 3
+The input is a digit: 4
+The input is a digit: 4
+The input is a digit: 5
