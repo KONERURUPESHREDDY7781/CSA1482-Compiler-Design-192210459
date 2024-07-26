@@ -1,0 +1,18 @@
+%{
+#include <stdio.h>
+
+%}
+
+%%
+^(http|https|ftp)://[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/[a-zA-Z0-9._/?=&%-]*)?$  { printf("Valid URL: %s\n", yytext); }
+.|\n                                                                       { /* Ignore invalid URLs and other text */ }
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
