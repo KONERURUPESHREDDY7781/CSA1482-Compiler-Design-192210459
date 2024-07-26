@@ -1,0 +1,22 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+#define OLD_WORD "oldword"
+#define NEW_WORD "newword"
+
+%}
+
+%%
+{OLD_WORD}  { printf(NEW_WORD); }
+.|\n        { putchar(yytext[0]); }
+%%
+
+int main() {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
